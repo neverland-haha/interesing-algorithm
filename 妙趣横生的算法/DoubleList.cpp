@@ -5,13 +5,13 @@ template<typename T>class DoubleListNode {
 private:
     friend class DoubleList<T>;
     DoubleListNode()
-        // ¿Õ¹¹Ôìº¯Êı
+        // ç©ºæ„é€ å‡½æ•°
     {
         m_pprior = NULL;
         m_pnext = NULL;
     }
 
-    // ¹¹Ôìº¯Êı
+    // æ„é€ å‡½æ•°
     DoubleListNode(const T item, DoubleListNode<T>* prior = NULL, DoubleListNode<T>* next = NULL)
     {
         m_data = item;
@@ -19,7 +19,7 @@ private:
         m_pnext = next;
     }
 
-    //Îö¹¹º¯Êı
+    //ææ„å‡½æ•°
     ~DoubleListNode()
     {
         m_pprior = NULL;
@@ -34,7 +34,7 @@ public:
     T get_data();
 };
 
-// º¯Êı
+// å‡½æ•°
 template<typename T>T DoubleListNode<T>::get_data()
 {
     return this->m_data;
@@ -67,10 +67,10 @@ private:
     DoubleListNode<T>* head;
 };
 
-/*  ****************Çå³ıÁ´±í**************    */
+/*  ****************æ¸…é™¤é“¾è¡¨**************    */
 template<typename T> void DoubleList<T>::cleanDoubleLink()
 {   
-    //  pdel Ïàµ±ÓÚÒ»Ö±¿½±´ÒªÉ¾³ıµÄ½áµã
+    //  pdel ç›¸å½“äºä¸€ç›´æ‹·è´è¦åˆ é™¤çš„ç»“ç‚¹
     DoubleListNode<T>* pmove = head->m_pnext, * pdel;
     while (pmove != NULL)
     {
@@ -81,7 +81,7 @@ template<typename T> void DoubleList<T>::cleanDoubleLink()
     head->m_pnext = NULL;
 }
 
-/* **************   »ñÈ¡³¤¶È ***************  */
+/* **************   è·å–é•¿åº¦ ***************  */
 template<typename T>int DoubleList<T>::get_length()
 {
     int length = 1;
@@ -107,7 +107,7 @@ template<typename T>DoubleListNode<T>* DoubleList<T>::find_node(int n)
         pmove = pmove->m_pnext;
         if (pmove == NULL)
         {   
-            cout << "²»´æÔÚ¸Ã½áµã" << endl;   
+            cout << "ä¸å­˜åœ¨è¯¥ç»“ç‚¹" << endl;   
             return NULL;
         }
     }
@@ -127,19 +127,19 @@ template<typename T>bool DoubleList<T>::insert_node(T item, int n)
     
     if (newnode == NULL)
     {   
-        cout << "ÄÚ´æ·ÖÅäÊ§°Ü,ĞÂµÄ½áµãÎŞ·¨´´½¨" << endl;
+        cout << "å†…å­˜åˆ†é…å¤±è´¥,æ–°çš„ç»“ç‚¹æ— æ³•åˆ›å»º" << endl;
         exit(1);
     }
     for (int i = 1; i < n; i++)
     {
         if (pmove == NULL && i < n - 1)
         {
-            cout << "³¬³öÁ´±í³¤¶È£¬²åÈëÎ»ÖÃÎŞĞ§" << endl;
+            cout << "è¶…å‡ºé“¾è¡¨é•¿åº¦ï¼Œæ’å…¥ä½ç½®æ— æ•ˆ" << endl;
             return false;
         }
     }
     
-    //²åÈëĞÂµÄ½áµã
+    //æ’å…¥æ–°çš„ç»“ç‚¹
     newnode->m_pnext = pmove->m_pnext;
     if (pmove->m_pnext != NULL)
     {   
@@ -154,7 +154,7 @@ template<typename T>bool DoubleList<T>::remove_node(int n)
 {
     if (n <1 || n > get_length())
     {   
-        cout << "Î»ÖÃ²»ºÏ·¨" << endl;
+        cout << "ä½ç½®ä¸åˆæ³•" << endl;
         return false;
     }
     DoubleListNode<T>* pmove = head->m_pnext, * pdel;
@@ -164,11 +164,11 @@ template<typename T>bool DoubleList<T>::remove_node(int n)
         pmove = pmove->m_pnext;
         if (pmove == NULL)
         {   
-            cout << "³¬³öÁËÁ´±í·¶Î§" << endl;
+            cout << "è¶…å‡ºäº†é“¾è¡¨èŒƒå›´" << endl;
             return false;
         }
     }
-    // del Ïàµ±ÓÚÁÙÊ±µÄ±äÁ¿
+    // del ç›¸å½“äºä¸´æ—¶çš„å˜é‡
     pdel = pmove;
     pmove->m_pprior->m_pnext = pdel->m_pnext;
     pmove->m_pnext->m_pprior = pdel->m_pprior;
@@ -180,7 +180,7 @@ template<typename T>T DoubleList<T>::getd_data(int n)
 {
     if (n < 1 || n > get_length())
     {   
-        cout << "´íÎóµÄÎ»ÖÃ" << endl;
+        cout << "é”™è¯¯çš„ä½ç½®" << endl;
         exit(1);
     }
     DoubleListNode<T>* pmove = head->m_pnext;
@@ -189,13 +189,13 @@ template<typename T>T DoubleList<T>::getd_data(int n)
         pmove = pmove->m_pnext;
         if (pmove == NULL)
         {
-            cout << "Î»ÖÃ²»ºÏ·¨" << endl;
+            cout << "ä½ç½®ä¸åˆæ³•" << endl;
             exit(1);
         }
     }   
     if (pmove == NULL)
     {   
-        cout << "½áµã²»´æÔÚ" << endl;
+        cout << "ç»“ç‚¹ä¸å­˜åœ¨" << endl;
         return NULL;
     }
     return pmove->m_data;
@@ -206,7 +206,7 @@ template<typename T>DoubleListNode<T>* DoubleList<T>::find_data(T item)
     DoubleListNode<T>* pmove = head->m_pnext;
     if (pmove == NULL)
     {
-        cout << "Á´±íÊÇ¿Õ±í" << endl;
+        cout << "é“¾è¡¨æ˜¯ç©ºè¡¨" << endl;
         exit(1);
     }
     while (pmove->get_data() != item)
@@ -214,7 +214,7 @@ template<typename T>DoubleListNode<T>* DoubleList<T>::find_data(T item)
         pmove = pmove->m_pnext;
         if (pmove == NULL)
         {
-            cout << "½áµã²»´æÔÚ" << endl;
+            cout << "ç»“ç‚¹ä¸å­˜åœ¨" << endl;
             exit(1);
         }
     }
@@ -231,19 +231,19 @@ int main()
         head->insert_node(i * 3, i);
     }
 
-    // ²åÈëÖµ
+    // æ’å…¥å€¼
     for (int i = 1; i < 10; i++)
     {
-        cout << "µÚ" << i <<  "¸ö½áµãÊÇ: " << head->getd_data(i) << endl;
+        cout << "ç¬¬" << i <<  "ä¸ªç»“ç‚¹æ˜¯: " << head->getd_data(i) << endl;
     }
     
-    cout << "Á´±íµÄ³¤¶ÈÎª:" << head->get_length() << endl;
+    cout << "é“¾è¡¨çš„é•¿åº¦ä¸º:" << head->get_length() << endl;
 
     DoubleListNode<int> *want_node = head->find_data(3);
-    cout << "»ñÈ¡½áµãµÄÖµÎª: " <<  want_node->get_data() << endl;
+    cout << "è·å–ç»“ç‚¹çš„å€¼ä¸º: " <<  want_node->get_data() << endl;
         
     head->cleanDoubleLink();
-    cout << "Á´±íµÄ³¤¶ÈÎª:" << head->get_length() << endl;
+    cout << "é“¾è¡¨çš„é•¿åº¦ä¸º:" << head->get_length() << endl;
     
 
 
