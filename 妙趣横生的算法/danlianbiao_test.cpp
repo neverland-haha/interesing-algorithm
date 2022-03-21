@@ -1,8 +1,5 @@
 #include<iostream>
-
 using namespace std;
-
-
 template<typename T> class ListNode;
 
 template<typename T>class LinkList{
@@ -23,14 +20,14 @@ public:
     delete head;
     }
 
-    bool insertNode(int i, T newData);      //²åÈë½áµã
-    ListNode<T>* find_node(T value);         // ÕÒµ½½áµã
-        void clearLink();                    // Çå³ı½áµã
-    bool rmnode(ListNode<T>*q);              // É¾³ı½áµã
-    T getNodeData(ListNode<T> *p);            //»ñÈ¡½áµãÖµ
-    ListNode<T>* get_node(int i);             // »ñÈ¡½áµã
-    int getLength();                           // »ñÈ¡³¤¶È
-    T get_nodedata(int index);                 // »ñÈ¡½áµãÖµ
+    bool insertNode(int i, T newData);      //æ’å…¥ç»“ç‚¹
+    ListNode<T>* find_node(T value);         // æ‰¾åˆ°ç»“ç‚¹
+        void clearLink();                    // æ¸…é™¤ç»“ç‚¹
+    bool rmnode(ListNode<T>*q);              // åˆ é™¤ç»“ç‚¹
+    T getNodeData(ListNode<T> *p);            //è·å–ç»“ç‚¹å€¼
+    ListNode<T>* get_node(int i);             // è·å–ç»“ç‚¹
+    int getLength();                           // è·å–é•¿åº¦
+    T get_nodedata(int index);                 // è·å–ç»“ç‚¹å€¼
 private:
     ListNode<T> *head;
 };
@@ -72,7 +69,7 @@ template<typename T> bool LinkList<T>::insertNode(int i, T newData)
 		p = p->next;
 		if (NULL == p)
 		{
-			break;//        Èç¹ûÖ¸ÕëÎª¿Õ£¬Ôò²»´æÔÚ¸Ã½áµã»òÒÑµ½´ï±íÎ²
+			break;//        å¦‚æœæŒ‡é’ˆä¸ºç©ºï¼Œåˆ™ä¸å­˜åœ¨è¯¥ç»“ç‚¹æˆ–å·²åˆ°è¾¾è¡¨å°¾
 		}
 	}
 	if (p == NULL ||  j < (i - 1))
@@ -92,7 +89,7 @@ template<typename T>bool LinkList<T>::rmnode(ListNode<T>* q)
 {
 	if (NULL == q)
 	{
-		std::cout << "´ıÉ¾³ı½áµã²»´æÔÚ£¡" << std::endl;
+		std::cout << "å¾…åˆ é™¤ç»“ç‚¹ä¸å­˜åœ¨ï¼" << std::endl;
 		return false;
 	}
 	ListNode<T>* tempPointer = head;
@@ -203,36 +200,33 @@ int main()
 	ListNode<int>*want_node;
 	int m;
 
-    // ²åÈëÁ´±í£¬³õÊ¼»¯
+    // æ’å…¥é“¾è¡¨ï¼Œåˆå§‹åŒ–
 	for (int i = 1; i < 10; i++)
 	{
 		head->insertNode(i,i * 3);
 	}
-    cout << "Ô­Ê¼µÄÁ´±íµÄ³¤¶ÈÎª: " <<  head->getLength() << endl;
+    cout << "åŸå§‹çš„é“¾è¡¨çš„é•¿åº¦ä¸º: " <<  head->getLength() << endl;
 
 
     for (int i = 1;i < head->getLength();i++)
-        cout << "µÚ "  << i << "¸ö½áµãµÄÖµÎª: " <<  head->get_nodedata(i) << endl;
+        cout << "ç¬¬ "  << i << "ä¸ªç»“ç‚¹çš„å€¼ä¸º: " <<  head->get_nodedata(i) << endl;
 
-    // ²éÕÒÖµµãµÄ½áµã,²¢É¾³ı
-    want_node = head->find_node(3); // ÕÒµ½ÌØ¶¨µÄÖµ
-    head->rmnode(want_node);        // É¾³ıÕâ¸ö½áµã
-    cout << "É¾³ıÒ»¸ö½áµãºóÁ´±íµÄ³¤¶ÈÎª: " <<  head->getLength() << endl;
+    // æŸ¥æ‰¾å€¼ç‚¹çš„ç»“ç‚¹,å¹¶åˆ é™¤
+    want_node = head->find_node(3); // æ‰¾åˆ°ç‰¹å®šçš„å€¼
+    head->rmnode(want_node);        // åˆ é™¤è¿™ä¸ªç»“ç‚¹
+    cout << "åˆ é™¤ä¸€ä¸ªç»“ç‚¹åé“¾è¡¨çš„é•¿åº¦ä¸º: " <<  head->getLength() << endl;
 
-    head->rmnode(head->get_node(2));    // É¾³ıÌØ¶¨Î»ÖÃµÄ½áµã
-    cout <<  "É¾³ıÒ»¸ö½áµãºóÁ´±íµÄ³¤¶ÈÎª: " << head->getLength() << endl;
+    head->rmnode(head->get_node(2));    // åˆ é™¤ç‰¹å®šä½ç½®çš„ç»“ç‚¹
+    cout <<  "åˆ é™¤ä¸€ä¸ªç»“ç‚¹åé“¾è¡¨çš„é•¿åº¦ä¸º: " << head->getLength() << endl;
 
-    // Çå¿ÕÁ´±í
+    // æ¸…ç©ºé“¾è¡¨
     head->clearLink();
-    cout << "Çå¿ÕÁ´±íºóµÄ³¤¶ÈÎª: " <<  head->getLength();  //Êä³ö½á¹ûÎª 1
+    cout << "æ¸…ç©ºé“¾è¡¨åçš„é•¿åº¦ä¸º: " <<  head->getLength();  //è¾“å‡ºç»“æœä¸º 1
 
 
 
 
-    // »ñÈ¡Êı¾İ
-//    head-> clear
 
-//
 
 
 }
